@@ -3,6 +3,10 @@ import axiosConfig from '../../axiosConfig';
 import {Link, useParams} from 'react-router-dom';
 import {useState,useEffect} from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
+import Sidebar from "../main/HTML/Sidebar";
+import Topbar from "../main/HTML/Topbar";
+import Topbar2 from "../main/HTML/Topbar2";
 
 const PatientList=()=>{
 
@@ -21,31 +25,69 @@ const PatientList=()=>{
         }) 
     },[]);
 
+    //_____________________________________________________________________
+
+    
+const DeletePatient = (e, id)=>{
+    e.preventDefault();
+    const thisClicked = e.currentTarget;
+    thisClicked.innerText = "Deleting";
+    swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this patient!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+            if (willDelete) {
+                axios.post(`https://localhost:44326/api/patient/delete/${id}`)
+                .then((rsp)=>{
+                    if(rsp.status===200){
+                        swal("Success","Patient deleted successfully", "success");
+                        thisClicked.closest("tr").remove();
+                    }
+                    else {
+                        swal("Success", "No patient found", "success")
+                        thisClicked.innerText = "Delete";
+                    }
+                },(err)=>{
+                    debugger;
+                });
+                // thisClicked.closest("div").remove();
+            } else {
+                swal("Canceled!");
+                thisClicked.innerText = "Delete";
+            }
+        });
+
+    }
+
+
+    //_____________________________________________________
+
+
 
 
     return(
         <div>
-            <TopMenu/>
+            {/* <TopMenu/>
              <hr/>
             <h4 style={{textAlign:"center",fontFamily: "myFirstFont"}}>PatientList</h4>
-            <hr/> 
+            <hr/>  */}
 
+            <Sidebar/>
+            <Topbar2/>
 
+            <div class="content2">
 
-
-
-            <div class="alert alert-success" role="alert">
-                    {/* <b>{orderDeleted}</b> */}
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    
-                    <div class="col-sm-12">
-                   
+                                <div class="title">
+                                    <h2>Patient List</h2>
+                                
+                                </div>
+                                                
                 
-                                <table className="table table-striped bg-dark text-light">
-                                <thead class="thead-dark">
+                                <table>
                                 <tr>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -56,7 +98,6 @@ const PatientList=()=>{
                                 <th>Disease</th>
 
                                 </tr>
-                                </thead>
                                     {
                                        
                                        patientList.map((patient)=>(
@@ -71,8 +112,8 @@ const PatientList=()=>{
                                                          <td>{patient.Dob}</td>
                                                          <td>{patient.BloodGroup}</td>
                                                          <td>{patient.Disease}</td>
-              
-                                                     
+                                                         <td><button type="button" onClick={(e)=>DeletePatient(e,patient.ID)} class="btn btn-danger">Delete</button></td>
+                                                         <td><Link to={`/patient/update/${patient.ID}`}><button type="button" class="btn btn-info">Edit</button></Link></td>
                                                     </tr>
                                            
                                                
@@ -83,9 +124,9 @@ const PatientList=()=>{
                                </table>
                              
 
-                    </div>
+              
                    
-                </div>
+    
             </div>
 
 
