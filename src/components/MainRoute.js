@@ -24,18 +24,19 @@ const MainRoute = () => {
            
                 <Routes>
 
-{/* 
-                    <Route path="/signin" element={<Login />}></Route>
 
-                    <Route path="/signout" element={<Logout />}></Route>
-                    <Route path="/login" element={<Login/>}></Route>
-                    <Route path="/logout" element={<Logout/>}></Route>
-                    <Route path="/" element={<Navigate replace to="/logout" />}></Route> */}
+                <Route path="/signin" element={<Login />}></Route>
 
+            <Route path="/signout" element={<Logout />}></Route>
+            <Route path="/" element={<Login/>}></Route>
+            <Route path="/logout" element={<Logout/>}></Route>
+            <Route path="/" element={<Navigate replace to="/logout" />}></Route>
+
+               
 
                     {/* ___________________________Admin______________________________ */}
                    
-                    <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
+                    <Route path="/admin/dashboard" element={<Dashboard></Dashboard>}></Route>
                     <Route path="/doctor/add" element={<DoctorAdd></DoctorAdd>}></Route>
                     <Route path="/doctor/list" element={<DoctorList></DoctorList>}></Route>
                     <Route path="/doctor/update/:ID" element={<DoctorUpdate></DoctorUpdate>}></Route>
