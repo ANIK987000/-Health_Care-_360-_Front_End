@@ -14,7 +14,7 @@ const Sidebar=()=>{
             <li> <Link to={"/doctor/list"}><span>Doctor</span></Link> </li>
             <li> <Link to={"/patient/list"}><span>Patient</span></Link> </li>
             <li> <Link to={"/staff/list"}><span>Staff</span></Link> </li>
-            <li><span>Income</span> </li>
+            <li><Link to={"/income/for/last/seven/days"}><span>Income</span></Link> </li>
             <li> <Link to={"/notice/list"}><span>NoticeBoard</span></Link> </li>
             <li><span>Help</span></li>
             <li><span>Settings</span> </li>

@@ -147,13 +147,13 @@ const DoctorDepartmentGraph=()=>{
             <Topbar></Topbar>
             
 
-                <div class="bar">
-                <div class="bar-main">
+                <div class="bar1">
+                <div class="bar-main1">
                    
                     
                 <PieChart width={830} height={250}>
-                <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
-                <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
+                <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="red" />
+                <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="blue" label />
                 </PieChart>
 
 
