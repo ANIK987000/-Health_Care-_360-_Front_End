@@ -9,10 +9,10 @@ import Sidebar from "../main/HTML/Sidebar";
 import Topbar from "../main/HTML/Topbar";
 import Topbar3 from "../main/HTML/Topbar3";
 
-const StaffList=()=>{
+const NoticeList=()=>{
 
     const {id} = useParams();
-    const [staffList,setStaffList] = useState([]);
+    const [noticeList,setNoticeList] = useState([]);
     //const[d_qual,setQual] = useState("");
     const [search,setSearch] = useState("");
 //__________________________________________________________
@@ -20,9 +20,9 @@ const StaffList=()=>{
 
     useEffect(()=>{
         // axiosConfig.get("/doctor/list")
-        axios.get("https://localhost:44326/api/staff/list")
+        axios.get("https://localhost:44326/api/notice/list")
         .then((rsp)=>{
-            setStaffList(rsp.data);
+            setNoticeList(rsp.data);
             console.log(rsp);
         },(err)=>{
 
@@ -32,27 +32,27 @@ const StaffList=()=>{
 //____________________________________________________________
 
 
-const DeleteStaff = (e, id)=>{
+const DeleteNotice = (e, id)=>{
     e.preventDefault();
     const thisClicked = e.currentTarget;
     thisClicked.innerText = "Deleting";
     swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this staff!",
+            text: "Once deleted, you will not be able to recover this notice!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         })
             .then((willDelete) => {
             if (willDelete) {
-                axios.post(`https://localhost:44326/api/staff/delete/${id}`)
+                axios.post(`https://localhost:44326/api/notice/delete/${id}`)
                 .then((rsp)=>{
                     if(rsp.status===200){
-                        swal("Success","Staff deleted successfully", "success");
+                        swal("Success","Notice deleted successfully", "success");
                         thisClicked.closest("tr").remove();
                     }
                     else {
-                        swal("Success", "No staff found", "success")
+                        swal("Success", "No notice found", "success")
                         thisClicked.innerText = "Delete";
                     }
                 },(err)=>{
@@ -97,11 +97,12 @@ const DeleteStaff = (e, id)=>{
                     </div> */}
 
                     <div class="search">
-                        <input type="search"name="search" onChange={(e)=>{setSearch(e.target.value)}}    placeholder="Type here to search..."></input>
+                       
+                        <input type="date"name="search" onChange={(e)=>{setSearch(e.target.value)}}    placeholder="Type here to search..."></input>
                         <button type="submit"></button>
                     </div>
                     <div class="user">
-                        <a href="/staff/add" class="btnnn">Add New</a>
+                        <a href="/notice/add" class="btnnn">Add New</a>
                         
                         <div class="img-case">
                                
@@ -114,30 +115,29 @@ const DeleteStaff = (e, id)=>{
             <div class="content3">
 
                     <div class="title">
-                        <h2>Staff List</h2>
+                        <h2>Notice List</h2>
                        
                     </div>
                     <table>
 
                                 <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Salary</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
                                 <th></th>
                                 <th></th>
         
                                 </tr>
 
                     {
-                                staffList.filter((val)=>{
+                                noticeList.filter((val)=>{
                                         
                                     if(search=="" )
                                     {
                                         return val;
                                     }
-                                    else if(val.Name.toLowerCase().includes(search.toLowerCase()))
+                                    else if(val.EndDate.toLowerCase().includes(search.toLowerCase()))
                                     {
                                         return val;
                                     }
@@ -149,16 +149,16 @@ const DeleteStaff = (e, id)=>{
 
                                     return(
                                        
-                                        <tr key={val.Name}>
+                                        <tr key={val.Title}>
                                                    
-                                        <td>{val.Name}</td>                   
-                                        <td>{val.Email}</td>
-                                        <td>{val.Phone}</td>
-                                        <td>{val.Address}</td>
-                                        <td>{val.Salary}</td>
+                                        <td>{val.Title}</td>                   
+                                        <td>{val.Description}</td>
+                                        <td>{val.StartDate}</td>
+                                        <td>{val.EndDate}</td>
+                                       
 
-                                        <td><button type="button" onClick={(e)=>DeleteStaff(e,val.ID)} class="btn btn-danger">Delete</button></td>
-                                        <td><Link to={`/staff/update/${val.ID}`}><button type="button" class="btn btn-info">Edit</button></Link></td>
+                                        <td><button type="button" onClick={(e)=>DeleteNotice(e,val.ID)} class="btn btn-danger">Delete</button></td>
+                                        <td><Link to={`/notice/update/${val.ID}`}><button type="button" class="btn btn-info">Edit</button></Link></td>
                                     
                                    </tr>
 
@@ -179,4 +179,4 @@ const DeleteStaff = (e, id)=>{
 
     )
 }
-export default StaffList;
+export default NoticeList;

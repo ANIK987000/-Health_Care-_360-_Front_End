@@ -6,8 +6,7 @@ const Topbar=()=>{
             <div class="header">
                 <div class="nav">
                     <div class="search">
-                        <input type="text" placeholder="Search.."></input>
-                        <button type="submit"></button>
+                    <marquee behavior="alternate" direction="right" style={{color:"#002b45",fontFamily: "myFirstFont"}}><b>|--- Welcome {localStorage.getItem('user_name')} ---|</b></marquee>
                     </div>
                     <div class="user">
                         <a href="#" class="btnnn">Add New</a>

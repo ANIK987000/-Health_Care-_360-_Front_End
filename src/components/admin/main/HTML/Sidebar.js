@@ -10,10 +10,12 @@ const Sidebar=()=>{
         </div>
         <ul>
             <li>  <Link to={"/admin/dashboard"}><span>Dashboard</span></Link> </li>
+            <li>  <Link to={"/admin/list"}><span>Admin</span></Link> </li>
             <li> <Link to={"/doctor/list"}><span>Doctor</span></Link> </li>
             <li> <Link to={"/patient/list"}><span>Patient</span></Link> </li>
             <li> <Link to={"/staff/list"}><span>Staff</span></Link> </li>
             <li><span>Income</span> </li>
+            <li> <Link to={"/notice/list"}><span>NoticeBoard</span></Link> </li>
             <li><span>Help</span></li>
             <li><span>Settings</span> </li>
             <li> <Link to="/signout"><span>Sign Out</span></Link> </li>

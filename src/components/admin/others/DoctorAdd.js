@@ -69,7 +69,7 @@ const DoctorAdd=()=>{
     return (
         <div>
                 <Sidebar></Sidebar>
-                {/* <Topbar></Topbar> */}
+                <Topbar></Topbar>
 
 
                 <div class="content">
@@ -104,14 +104,33 @@ const DoctorAdd=()=>{
                           <span class="ad-err">{err.d_add? err.d_add[0]:''}</span><br/>
 
                           <label>Qualification</label><br/>
-                          <input type="text" name="d_qual" id="d_qual" value={d_qual} onChange={(e)=>{setQual(e.target.value)}} />
-                          <span class="ad-err">{err.d_qual? err.d_qual[0]:''}</span><br/>
-
+                          {/* <input type="text" name="d_qual" id="d_qual" value={d_qual} onChange={(e)=>{setQual(e.target.value)}} />
+                          <span class="ad-err">{err.d_qual? err.d_qual[0]:''}</span><br/> */}
+                          <select name="d_qual"  onChange={(e)=>{setQual(e.target.value)}}>
+                            <option value="none">none</option>
+                            <option value="Surgeon">Surgeon</option>
+                            <option value="Dermatologist">Dermatologist</option>
+                            <option value="Orthopedist">Orthopedist</option>
+                            <option value="Urologist">Urologist</option>
+                            <option value="Neurologist">Neurologist</option>
+                            <option value="Orthodontist">Orthodontist</option>
+                            <option value="Anesthesiologist">Anesthesiologist</option>
+                            <option value="Cardiology physician">Cardiology physician</option>
+                            
+                        </select><br></br>
 
                           <label>VisitingHours</label><br/>
-                          <input type="text" name="d_visit" id="d_visit" value={d_visit} onChange={(e)=>{setVisit(e.target.value)}} />
-                          <span class="ad-err">{err.d_visit? err.d_visit[0]:''}</span><br/>
-
+                          {/* <input type="text" name="d_visit" id="d_visit" value={d_visit} onChange={(e)=>{setVisit(e.target.value)}} />
+                          <span class="ad-err">{err.d_visit? err.d_visit[0]:''}</span><br/> */}
+                        <select name="d_visit" onChange={(e)=>{setVisit(e.target.value)}}>
+                           <option value="none">none</option>
+                            <option value="2pm-4pm">2pm-4pm</option>
+                            <option value="4pm-6pm">4pm-6pm</option>
+                            <option value="6pm-8pm">6pm-8pm</option>
+                            <option value="8pm-10pm">8pm-10pm</option>
+                            <option value="10pm-12pm">10pm-12pm</option>
+                            <option value="emergency-period">Emgergency Period</option>
+                        </select><br></br>
 
                           <label>AppointmentFee</label><br/>
                           <input type="text" name="d_appoint" id="d_appoint" value={d_appoint} onChange={(e)=>{setAppoint(e.target.value)}} />
@@ -120,7 +139,7 @@ const DoctorAdd=()=>{
 
                           
                           <button class="btn btn-success">Add</button>
-                          <Link to={"/doctor/list"}><button type="button" class="btnnn" style={{float:"right",marginRight:"20px"}}>Back</button></Link>
+                          <Link to={"/doctor/list"}><button type="button" class="btnnn" style={{float:"right",marginRight:"150px"}}>Back</button></Link>
 
                         </form>
                 
