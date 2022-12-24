@@ -19,7 +19,7 @@ li {
 
 h1,
 h2 {
-    color: rgb(235, 243, 245);
+    color: rgb(245, 240, 235);
 }
 
 h3 {
@@ -201,7 +201,7 @@ select {
 
 .bar {
     position: relative;
-    margin-top: 20vh;
+    margin-top: 1vh;
     margin-left: 30vh;
     min-height: 60vh;
     background:#6a99b7;
@@ -210,10 +210,35 @@ select {
     padding-top: 25px;
 }
 
+
+
 .bar .bar-main span{
     padding-left: 5px;
     color:#26236e;
 }
+
+
+
+
+.bar1 {
+    position: relative;
+    margin-top: 20vh;
+    margin-left: 30vh;
+    min-height: 60vh;
+    background:#6a99b7;
+}
+.bar1 .bar-main1{
+    padding-top: 25px;
+}
+
+.bar1 .bar-main1 span{
+    padding-left: 5px;
+    color:#26236e;
+}
+
+
+
+
 
  .content .cards {
     padding: 20px 15px;

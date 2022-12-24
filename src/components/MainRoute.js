@@ -23,6 +23,7 @@ import AdminAdd from './admin/others/AdminAdd';
 import AdminList from './admin/others/AdminList';
 import AdminUpdate from './admin/others/AdminUpdate';
 import DoctorDepartmentGraph from './admin/others/DoctorDepartmentGraph';
+import SevenDaysIncome from './admin/others/SevenDaysIncome';
 
 const MainRoute = () => {
     return (
@@ -48,6 +49,8 @@ const MainRoute = () => {
                     <Route path="/admin/add" element={<AdminAdd></AdminAdd>}></Route>
                     <Route path="/admin/list" element={<AdminList></AdminList>}></Route>
                     <Route path="/admin/update/:ID" element={<AdminUpdate></AdminUpdate>}></Route>
+                    <Route path="/income/for/last/seven/days" element={<SevenDaysIncome></SevenDaysIncome>}></Route>
+
 
                     <Route path="/doctor/add" element={<DoctorAdd></DoctorAdd>}></Route>
                     <Route path="/doctor/list" element={<DoctorList></DoctorList>}></Route>

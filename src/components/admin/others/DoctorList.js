@@ -303,7 +303,7 @@ const DoctorList=()=>{
                           
              
             </div>
-                <div class="bar">
+                {/* <div class="bar">
                 <div class="bar-main">
                    
                     
@@ -324,7 +324,7 @@ const DoctorList=()=>{
                          <span>Cardiology:{cardiology}</span>
                     </div>
                     </div>       
-                </div>    
+                </div>     */}
 
         </div>
     )

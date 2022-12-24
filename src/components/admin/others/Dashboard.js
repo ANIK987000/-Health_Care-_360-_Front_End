@@ -49,6 +49,25 @@ const Dashboard=()=>{
        
       ]
  
+
+      //_____________________________________________________________
+
+      const [income,setIncome] = useState("");
+      useEffect(()=>{
+          axios.get("https://localhost:44326/api/income/from/appointment/for/today")
+          .then((rsp)=>{
+            setIncome(rsp.data[0]);
+              
+              //console.log(rsp.data[0]);
+              //console.log(rsp.data[1]);
+              //console.log(rsp.data[2]);
+              console.log(rsp.data);
+          },(err)=>{
+  
+          }) 
+      },[]);
+
+
     return(
         <div>
 
@@ -95,7 +114,7 @@ const Dashboard=()=>{
                         </div>
                         <div class="card">
                             <div class="box">
-                                <h1>350000</h1>
+                                <h1>{income}</h1>
                                 <h3>Income</h3>
                             </div>
                             <div class="icon-case">
@@ -109,7 +128,7 @@ const Dashboard=()=>{
 
               <div class="bar">
                 <div class="bar-main">
-                <BarChart width={730} height={250} data={data}>
+                <BarChart width={730} height={300} data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />

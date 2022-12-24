@@ -104,7 +104,7 @@ const PatientAdd=()=>{
                           <span class="ad-err">{err.p_add? err.p_add[0]:''}</span><br/>
 
                           <label>Date Of Birth</label><br/>
-                          <input type="text" name="p_dob" id="p_dob" value={p_dob} onChange={(e)=>{setDob(e.target.value)}} />
+                          <input type="date" name="p_dob" id="p_dob" value={p_dob} onChange={(e)=>{setDob(e.target.value)}} />
                           <span class="ad-err">{err.p_dob? err.p_dob[0]:''}</span><br/>
 
 
