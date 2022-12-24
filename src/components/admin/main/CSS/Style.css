@@ -19,7 +19,7 @@ li {
 
 h1,
 h2 {
-    color: rgb(252, 252, 255);
+    color: rgb(235, 243, 245);
 }
 
 h3 {
@@ -62,6 +62,10 @@ td {
 }
 
 input{
+    height: 30px;
+    width: 300px;
+}
+select {
     height: 30px;
     width: 300px;
 }
@@ -114,7 +118,7 @@ input{
     top: 0;
     right: 0;
     width: 80vw;
-    height: 10vh;
+    height: 15vh;
     background: rgb(255, 255, 255);
     display: flex;
     align-items: center;
@@ -129,16 +133,21 @@ input{
     align-items: center;
 }
 
+.header .nav .qual select{
+    border: 3px solid black;
+    width: 100px;
+}
+
  .header .nav .search {
     flex: 3;
     display: flex;
     justify-content: center;
 }
 
- .header .nav .search input[type=text] {
-    border: none;
-    background: #f1f1f1;
-    padding: 10px;
+ .header .nav .search input {
+    margin-top: 5px;
+    border: 3px solid rgb(0, 0, 0);
+    background: #d3d2d2;
     width: 50%;
 }
 
@@ -188,6 +197,22 @@ input{
     margin-left: 30vh;
     min-height: 50vh;
     background: #6a99b7;
+}
+
+.bar {
+    position: relative;
+    margin-top: 20vh;
+    margin-left: 30vh;
+    min-height: 60vh;
+    background:#6a99b7;
+}
+.bar .bar-main{
+    padding-top: 25px;
+}
+
+.bar .bar-main span{
+    padding-left: 5px;
+    color:#26236e;
 }
 
  .content .cards {

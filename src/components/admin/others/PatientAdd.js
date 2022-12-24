@@ -109,16 +109,27 @@ const PatientAdd=()=>{
 
 
                           <label>BloodGroup</label><br/>
-                          <input type="text" name="p_bloodgroup" id="p_bloodgroup" value={p_bloodgroup} onChange={(e)=>{setBloodGroup(e.target.value)}} />
-                          <span class="ad-err">{err.p_bloodgroup? err.p_bloodgroup[0]:''}</span><br/>
+                          {/* <input type="text" name="p_bloodgroup" id="p_bloodgroup" value={p_bloodgroup} onChange={(e)=>{setBloodGroup(e.target.value)}} />
+                          <span class="ad-err">{err.p_bloodgroup? err.p_bloodgroup[0]:''}</span><br/> */}
+                          <select name="p_bloodgroup" onChange={(e)=>{setBloodGroup(e.target.value)}}>
+                           <option value="none">none</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
 
+                        </select><br></br>
 
                           <label>Disease</label><br/>
                           <input type="text" name="p_disease" id="p_disease" value={p_disease} onChange={(e)=>{setDisease(e.target.value)}} />
                           <span class="ad-err">{err.p_disease? err.p_disease[0]:''}</span><br/>
                           
                           <button class="btn btn-success">Add</button>
-                          <Link to={"/patient/list"}><button type="button" class="btnnn" style={{float:"right",marginRight:"20px"}}>Back</button></Link>
+                          <Link to={"/patient/list"}><button type="button" class="btnnn" style={{float:"right",marginRight:"150px"}}>Back</button></Link>
                         </form>
                 
                             
