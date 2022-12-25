@@ -215,7 +215,7 @@ const DoctorList=()=>{
                     <div class="user">
                    
                         <a href="/doctor/add" class="btnnn">Add New</a>
-                        <a href="/doctor/departmentwise/doctor/numbers" class="btnnn">Add </a>
+                       
                         
                         <div class="img-case">
                                
@@ -224,6 +224,12 @@ const DoctorList=()=>{
                     </div>
                 </div>
             </div>
+
+                <div class="content5">
+                    <a href="/doctor/departmentwise/doctor/numbers">Click here to see department wise doctor numbers </a>
+                    {/* <Link to={"/doctor/departmentwise/doctor/numbers"}><button type="button" class="btn btn-info">Click here to see department wise doctor numbers</button></Link> */}
+                </div>
+            
 
             <div class="content1">
 

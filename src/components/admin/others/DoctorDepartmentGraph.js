@@ -153,7 +153,7 @@ const DoctorDepartmentGraph=()=>{
                     
                 <PieChart width={830} height={250}>
                 <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="red" />
-                <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="blue" label />
+                <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#05466e" label />
                 </PieChart>
 
 

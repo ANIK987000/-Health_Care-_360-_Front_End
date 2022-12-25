@@ -23,6 +23,14 @@ const StaffAdd=()=>{
     const[err,setErr] = useState("");
 
 
+    const[errN,setNameErr] = useState("");
+    const[errM,setMailErr] = useState("");
+    const[errP,setPassErr] = useState("");
+    const[errPH,setPhnErr] = useState("");
+    const[errADD,setAddErr] = useState("");
+    const[errSal,setSalErr] = useState("");
+
+
     const handleForm=(event)=>{
         event.preventDefault();
         // setName('');
@@ -43,10 +51,63 @@ const StaffAdd=()=>{
             }
             setErr(rsp.data);
             //debugger;
-        },(er)=>{
-            if(er.status==422)
+        },(err)=>{
+            if(err.response.status==400)
             {
-                setErr(err.response.data);
+                if(err.response.data.ModelState["staffDTO.Name"])
+                {
+                    setNameErr(err.response.data.ModelState["staffDTO.Name"][0]);
+                }
+                else
+                {
+                    setNameErr();
+                }
+                if(err.response.data.ModelState["staffDTO.Email"])
+                {
+                    setMailErr(err.response.data.ModelState["staffDTO.Email"][0]);
+                }
+                else
+                {
+                    setMailErr();
+                }
+                if(err.response.data.ModelState["staffDTO.Password"])
+                {
+                    setPassErr(err.response.data.ModelState["staffDTO.Password"][0]);
+                }
+                else
+                {
+                    setPassErr();
+                }
+                if(err.response.data.ModelState["staffDTO.Phone"])
+                {
+                    setPhnErr(err.response.data.ModelState["staffDTO.Phone"][0]);
+                }
+                else
+                {
+                    setPhnErr();
+                }
+                if(err.response.data.ModelState["staffDTO.Address"])
+                {
+                    setAddErr(err.response.data.ModelState["staffDTO.Address"][0]);
+                }
+                else
+                {
+                    setAddErr();
+                }
+                if(err.response.data.ModelState["staffDTO.Salary"])
+                {
+                    setSalErr(err.response.data.ModelState["staffDTO.Salary"][0]);
+                }
+                else
+                {
+                    setSalErr();
+                }
+                
+             
+                
+               
+              
+              
             }
             else
             {
@@ -81,29 +142,29 @@ const StaffAdd=()=>{
                            
                           <label>NAME</label><br />
                           <input type="text" name="s_name" id="s_name" value={s_name} onChange={(e)=>{setName(e.target.value)}}/>
-                          <span class="ad-err">{err.s_name? err.s_name[0]:''}</span><br/>
+                          <span class="text-danger">{errN}</span><br/>
                           
                          
                           
                           <label>EMAIL</label><br/>
                           <input type="text" name="s_mail" id="s_mail" value={s_mail} onChange={(e)=>{setMail(e.target.value)}} />
-                          <span class="ad-err">{err.s_mail? err.s_mail[0]:''}</span><br/>
+                          <span class="text-danger">{errM}</span><br/>
                           
                           <label>PASSWORD</label><br/>
                           <input type="password" name="e_pass" id="s_pass" value={s_pass} onChange={(e)=>{setPass(e.target.value)}}/>
-                          <span class="ad-err">{err.s_pass? err.s_pass[0]:''}</span><br/>
+                          <span class="text-danger">{errP}</span><br/>
                           
                           <label>PHONE NUMBER</label><br/>
                           <input type="text" name="s_phn" id="s_phn" value={s_phn} onChange={(e)=>{setPhn(e.target.value)}} />
-                          <span class="ad-err">{err.s_phn? err.s_phn[0]:''}</span><br/>
+                          <span class="text-danger">{errPH}</span><br/>
 
                           <label>ADDRESS</label><br/>
                           <input type="text" name="s_add" id="s_add" value={s_add} onChange={(e)=>{setAdd(e.target.value)}} />
-                          <span class="ad-err">{err.s_add? err.s_add[0]:''}</span><br/>
+                           <span class="text-danger">{errADD}</span><br/>
 
                           <label>Salary</label><br/>
                           <input type="text" name="s_sal" id="s_sal" value={s_sal} onChange={(e)=>{setSalary(e.target.value)}} />
-                          <span class="ad-err">{err.s_sal? err.s_sal[0]:''}</span><br/>
+                          <span class="text-danger">{errSal}</span><br/>
                           
                           <button class="btn btn-success">Add</button>
                           <Link to={"/staff/list"}><button type="button" class="btnnn" style={{float:"right",marginRight:"150px"}}>Back</button></Link>

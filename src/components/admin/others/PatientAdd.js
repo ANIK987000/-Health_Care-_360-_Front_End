@@ -25,6 +25,16 @@ const PatientAdd=()=>{
     const[err,setErr] = useState("");
 
 
+    const[errN,setNameErr] = useState("");
+    const[errM,setMailErr] = useState("");
+    const[errP,setPassErr] = useState("");
+    const[errPH,setPhnErr] = useState("");
+    const[errADD,setAddErr] = useState("");
+    const[errDob,setDobErr] = useState("");
+    const[errBloodGroup,setBloodGroupErr] = useState("");
+    const[errDisease,setDiseaseErr] = useState("");
+
+
     const handleForm=(event)=>{
         event.preventDefault();
         // setName('');
@@ -45,10 +55,81 @@ const PatientAdd=()=>{
             }
             setErr(rsp.data);
             //debugger;
-        },(er)=>{
-            if(er.status==422)
+        },(err)=>{
+            if(err.response.status==400)
             {
-                setErr(err.response.data);
+                if(err.response.data.ModelState["patient.Name"])
+                {
+                    setNameErr(err.response.data.ModelState["patient.Name"][0]);
+                }
+                else
+                {
+                    setNameErr();
+
+                }
+                if(err.response.data.ModelState["patient.Email"])
+                {
+                    setMailErr(err.response.data.ModelState["patient.Email"][0]);
+                }
+                else
+                {
+                    setMailErr();
+                }
+                if(err.response.data.ModelState["patient.Password"])
+                {
+                    setPassErr(err.response.data.ModelState["patient.Password"][0]);
+                }
+                else
+                {
+                    setPassErr();
+                }
+                if(err.response.data.ModelState["patient.Phone"])
+                {
+                    setPhnErr(err.response.data.ModelState["patient.Phone"][0]);
+                }
+                else
+                {
+                    setPhnErr();
+                }
+                if(err.response.data.ModelState["patient.Address"])
+                {
+                    setAddErr(err.response.data.ModelState["patient.Address"][0]);
+                }
+                else
+                {
+                    setAddErr();
+                }
+             
+                if(err.response.data.ModelState["patient.Dob"])
+                {
+                    setDobErr(err.response.data.ModelState["patient.Dob"][0]);
+                }
+                else
+                {
+                    setDobErr();
+                }
+                if(err.response.data.ModelState["patient.BloodGroup"])
+                {
+                    setBloodGroupErr(err.response.data.ModelState["patient.BloodGroup"][0]);
+                }
+                else
+                {
+                    setBloodGroupErr();
+                }
+                if(err.response.data.ModelState["patient.Disease"])
+                {
+                    setDiseaseErr(err.response.data.ModelState["patient.Disease"][0]);
+                }
+                else
+                {
+                    setDiseaseErr();
+                }
+             
+               
+               
+                
+               
+                
             }
             else
             {
@@ -83,30 +164,29 @@ const PatientAdd=()=>{
                            
                           <label>NAME</label><br />
                           <input type="text" name="p_name" id="p_name" value={p_name} onChange={(e)=>{setName(e.target.value)}}/>
-                          <span class="ad-err">{err.p_name? err.p_name[0]:''}</span><br/>
+                          <span class="text-danger">{errN}</span><br/>
                           
                          
                           
                           <label>EMAIL</label><br/>
                           <input type="text" name="p_mail" id="p_mail" value={p_mail} onChange={(e)=>{setMail(e.target.value)}} />
-                          <span class="ad-err">{err.p_mail? err.p_mail[0]:''}</span><br/>
+                          <span class="text-danger">{errM}</span><br/>
                           
                           <label>PASSWORD</label><br/>
                           <input type="password" name="p_pass" id="p_pass" value={p_pass} onChange={(e)=>{setPass(e.target.value)}}/>
-                          <span class="ad-err">{err.p_pass? err.p_pass[0]:''}</span><br/>
+                          <span class="text-danger">{errP}</span><br/>
                           
                           <label>PHONE NUMBER</label><br/>
                           <input type="text" name="p_phn" id="p_phn" value={p_phn} onChange={(e)=>{setPhn(e.target.value)}} />
-                          <span class="ad-err">{err.p_phn? err.p_phn[0]:''}</span><br/>
+                          <span class="text-danger">{errPH}</span><br/>
 
                           <label>ADDRESS</label><br/>
                           <input type="text" name="p_add" id="p_add" value={p_add} onChange={(e)=>{setAdd(e.target.value)}} />
-                          <span class="ad-err">{err.p_add? err.p_add[0]:''}</span><br/>
+                          <span class="text-danger">{errADD}</span><br/>
 
                           <label>Date Of Birth</label><br/>
                           <input type="date" name="p_dob" id="p_dob" value={p_dob} onChange={(e)=>{setDob(e.target.value)}} />
-                          <span class="ad-err">{err.p_dob? err.p_dob[0]:''}</span><br/>
-
+                          <span class="text-danger">{errDob}</span><br/>
 
                           <label>BloodGroup</label><br/>
                           {/* <input type="text" name="p_bloodgroup" id="p_bloodgroup" value={p_bloodgroup} onChange={(e)=>{setBloodGroup(e.target.value)}} />
@@ -122,11 +202,12 @@ const PatientAdd=()=>{
                             <option value="AB+">AB+</option>
                             <option value="AB-">AB-</option>
 
-                        </select><br></br>
+                        </select>
+                        <span class="text-danger">{errBloodGroup}</span><br/>
 
                           <label>Disease</label><br/>
                           <input type="text" name="p_disease" id="p_disease" value={p_disease} onChange={(e)=>{setDisease(e.target.value)}} />
-                          <span class="ad-err">{err.p_disease? err.p_disease[0]:''}</span><br/>
+                          <span class="text-danger">{errDisease}</span><br/>
                           
                           <button class="btn btn-success">Add</button>
                           <Link to={"/patient/list"}><button type="button" class="btnnn" style={{float:"right",marginRight:"150px"}}>Back</button></Link>

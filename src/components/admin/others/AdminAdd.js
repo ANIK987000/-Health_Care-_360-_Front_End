@@ -20,6 +20,11 @@ const AdminAdd=()=>{
     
     const navigate = useNavigate();
     const[msg,setMsg] = useState("");
+    const[errN,setNameErr] = useState("");
+    const[errM,setMailErr] = useState("");
+    const[errP,setPassErr] = useState("");
+    const[errPH,setPhnErr] = useState("");
+    const[errADD,setAddErr] = useState("");
     const[err,setErr] = useState("");
 
 
@@ -43,10 +48,57 @@ const AdminAdd=()=>{
             }
             setErr(rsp.data);
             //debugger;
-        },(er)=>{
-            if(er.status==422)
+        },(err)=>{
+            if(err.response.status==400)
             {
-                setErr(err.response.data);
+                if(err.response.data.ModelState["admin.Name"])
+                {
+                    setNameErr(err.response.data.ModelState["admin.Name"][0]);
+
+                }
+                else
+                {
+                    setNameErr();
+
+                }
+                
+               if(err.response.data.ModelState["admin.Email"])
+                {
+                    setMailErr(err.response.data.ModelState["admin.Email"][0]);
+                }
+                else
+                {
+                    setMailErr();
+                }
+               if(err.response.data.ModelState["admin.Password"])
+                {
+                    setPassErr(err.response.data.ModelState["admin.Password"][0]);
+                }
+                else
+                {
+                    setPassErr();
+                }
+                if(err.response.data.ModelState["admin.Phone"])
+                {
+                    setPhnErr(err.response.data.ModelState["admin.Phone"][0]);
+                }
+                else
+                {
+                    setPhnErr();
+                }
+                 if(err.response.data.ModelState["admin.Address"])
+                {
+                    setAddErr(err.response.data.ModelState["admin.Address"][0]);
+                }
+                else
+                {
+                    setAddErr();
+                }
+               
+                
+                
+               
+               
             }
             else
             {
@@ -81,25 +133,25 @@ const AdminAdd=()=>{
                            
                           <label>NAME</label><br />
                           <input type="text" name="name" id="name" value={name} onChange={(e)=>{setName(e.target.value)}}/>
-                          <span class="ad-err">{err.name? err.name[0]:''}</span><br/>
+                          <span class="text-danger">{errN}</span><br/>
                           
                          
                           
                           <label>EMAIL</label><br/>
                           <input type="text" name="mail" id="mail" value={mail} onChange={(e)=>{setMail(e.target.value)}} />
-                          <span class="ad-err">{err.mail? err.mail[0]:''}</span><br/>
+                          <span class="text-danger">{errM}</span><br/>
                           
                           <label>PASSWORD</label><br/>
                           <input type="password" name="pass" id="pass" value={pass} onChange={(e)=>{setPass(e.target.value)}}/>
-                          <span class="ad-err">{err.pass? err.pass[0]:''}</span><br/>
+                          <span class="text-danger">{errP}</span><br/>
                           
                           <label>PHONE NUMBER</label><br/>
                           <input type="text" name="phn" id="phn" value={phn} onChange={(e)=>{setPhn(e.target.value)}} />
-                          <span class="ad-err">{err.phn? err.phn[0]:''}</span><br/>
+                          <span class="text-danger">{errPH}</span><br/>
 
                           <label>ADDRESS</label><br/>
                           <input type="text" name="add" id="add" value={add} onChange={(e)=>{setAdd(e.target.value)}} />
-                          <span class="ad-err">{err.add? err.add[0]:''}</span><br/>
+                          <span class="text-danger">{errADD}</span><br/>
 
             
                           

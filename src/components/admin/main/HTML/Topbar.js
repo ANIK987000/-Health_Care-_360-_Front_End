@@ -6,10 +6,10 @@ const Topbar=()=>{
             <div class="header">
                 <div class="nav">
                     <div class="search">
-                    <marquee behavior="alternate" direction="right" style={{color:"#002b45",fontFamily: "myFirstFont"}}><b>|--- Welcome {localStorage.getItem('user_name')} ---|</b></marquee>
+                    <marquee behavior="alternate" direction="right" style={{color:"#002b45",fontFamily: "myFirstFont"}}><b>|--- Welcome To HC360° ---|</b></marquee>
                     </div>
                     <div class="user">
-                        <a href="#" class="btnnn">Add New</a>
+                        <button>👮‍♂️ {localStorage.getItem('user_name')}</button>
                         
                         <div class="img-case">
                            

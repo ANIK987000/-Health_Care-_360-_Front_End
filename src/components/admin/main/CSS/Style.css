@@ -35,7 +35,8 @@ h3 {
 
 .btnnn:hover {
     color: #002035;
-    background: #367fad;
+    background: #ee0836;
+    color:white;
     padding: 3px 8px;
     border: 2px solid #014d7c;
 }
@@ -146,15 +147,23 @@ select {
 
  .header .nav .search input {
     margin-top: 5px;
-    border: 3px solid rgb(0, 0, 0);
     background: #d3d2d2;
     width: 50%;
 }
 
- .header .nav .search button {
-    width: 40px;
+ .header .nav .user button {
+    width: 180px;
     height: 40px;
-    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header .nav .user button:hover {
+    width: 180px;
+    height: 40px;
+    background-color: #be0d30;
+    color: #fff8f8;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -259,13 +268,44 @@ select {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.content .cards .card:hover {
+    width: 150px;
+    height: 100px;
+    background:#e30606;
+    margin: 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 
 .content1 {
     position: relative;
-    margin-top: 15vh;
+    margin-top: 1vh;
     margin-left: 30vh;
     min-height: 50vh;
     background: #6a99b7;
+}
+
+.content5 {
+    position: relative;
+    margin-top: 15vh;
+    margin-left: 30vh;
+    min-height: 5vh;
+    background: #6a99b7;
+}
+
+.content5  a{
+    padding-top: 18vh;
+    margin-left: 35vh;
+    margin-top: 18vh;
+    background: #f9fdff;
+    align-items: center;
+    margin-bottom: 0;
+    color:rgb(14, 160, 3);
+    
+    
 }
 
 .content1 table th{
@@ -338,7 +378,7 @@ select {
 .content .ad_content {
     position: relative;
     margin-top: 3vh;
-    margin-left: 30vh;
+    margin-left: 40vh;
     min-height: 50vh;
     background: #6a99b7;
 }
