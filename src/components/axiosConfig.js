@@ -3,6 +3,7 @@ const instance = axios.create({
     baseURL:'https://localhost:44326/api'
 });
 
+instance.defaults.headers.common["Authorization"]=localStorage.getItem('_authToken');
 instance.interceptors.request.use((config)=>{
     config.headers.common["Authorization"] = localStorage.getItem('_authToken');
     console.log("intercpeted");

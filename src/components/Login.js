@@ -18,14 +18,8 @@ const Login =()=>{
 
         var data={Email:email, Password:pass};
         axios.post("https://localhost:44326/api/Login",data)
+        //  axiosConfig.post("/Login",data)
         .then((rsp)=>{
-            setErr("");
-            if (rsp.status === 401) {
-                setErr(rsp.errors)
-                login.innerHTML= "Sign in";
-            }
-
-            //setMsg(rsp.data.msg);
             
             localStorage.setItem('_authToken',rsp.data.TKey);
             localStorage.setItem('name',rsp.data.Email);
@@ -38,6 +32,7 @@ const Login =()=>{
                     localStorage.setItem("user_id", rsp.data.ID);
                     localStorage.setItem("user_name", rsp.data.Name);
                     navigate('/admin/dashboard');
+                    
                 })
             }else if(rsp.data.Type==="doctor"){
                 axios.get(`https://localhost:44326/api/doctor/get/${name}`)
@@ -65,6 +60,12 @@ const Login =()=>{
 
             login.className = "btn btn-primary btn-block mb-4";
             login.innerHTML= "Sign in";
+        },(err)=>{
+            if (err.response.status === 401) {
+                setErr(err.response.data)
+                login.innerHTML= "Sign in";
+            }
+
         });
 
     }
@@ -79,7 +80,7 @@ const Login =()=>{
             <form onSubmit={Submit}>
             <h3>Login</h3>
             
-            <p className="text-danger">{msg}</p>
+            
             
             <div className="form-outline mb-4">
                 <span className="text-danger">{err.email? err.email[0]:''}</span>
@@ -94,12 +95,15 @@ const Login =()=>{
             </div>
 
             <button type="submit" id="signin" className="btn btn-primary btn-block mb-4" value="Sign in">Sign in</button>
-        
+            <p className="text-danger">{err}</p>
             
             <div className="text-center">
                 <p>Not a member? <Link to="/signup">sign up</Link></p>
             </div>
+            
             </form>
+
+            
         </div>
         </div>
     )

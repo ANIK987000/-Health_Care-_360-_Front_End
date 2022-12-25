@@ -18,7 +18,9 @@ const Dashboard=()=>{
     const [doctor,setDoctor] = useState("");
     const [patient,setPatient] = useState("");
     const [staff,setStaff] = useState("");
-    const [alldata,setAllData] = useState([]);
+    const [notice,setNotice] = useState("");
+    const [appointment,setAppointment] = useState("");
+    const [user,setUser] = useState([]);
     useEffect(()=>{
         axios.get("https://localhost:44326/api/all/list/count")
         .then((rsp)=>{
@@ -26,7 +28,9 @@ const Dashboard=()=>{
             setPatient(rsp.data[1]);
             setStaff(rsp.data[2]);
             setAdmin(rsp.data[3]);
-            setAllData(rsp.data);
+            setNotice(rsp.data[4]);
+            setAppointment(rsp.data[5]);
+            setUser(rsp.data[6]);
            
             //console.log(rsp.data[0]);
             //console.log(rsp.data[1]);
@@ -39,11 +43,12 @@ const Dashboard=()=>{
 
     const data = [
         {
-          "name": "Numbers Of The User",
+          "name": "Number Of Users",
           "admin": admin,
           "doctor": doctor,
           "patient": patient,
           "staff": staff,
+         
           
         }
        
@@ -116,6 +121,38 @@ const Dashboard=()=>{
                             <div class="box">
                                 <h1>{income}</h1>
                                 <h3>Income</h3>
+                            </div>
+                            <div class="icon-case">
+                               
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="box">
+                                <h1>{notice}</h1>
+                                <h3>Notices</h3>
+                            </div>
+                            <div class="icon-case">
+                               
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="box">
+                                <h1>{appointment}</h1>
+                                <h3>Appoints</h3>
+                            </div>
+                            <div class="icon-case">
+                               
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="box">
+                                <h1>{user}</h1>
+                                <h3>Users</h3>
                             </div>
                             <div class="icon-case">
                                

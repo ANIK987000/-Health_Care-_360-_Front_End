@@ -49,7 +49,7 @@ const MainRoute = () => {
                     <Route path="/admin/add" element={<AdminAdd></AdminAdd>}></Route>
                     <Route path="/admin/list" element={<AdminList></AdminList>}></Route>
                     <Route path="/admin/update/:ID" element={<AdminUpdate></AdminUpdate>}></Route>
-                    <Route path="/income/for/last/seven/days" element={<SevenDaysIncome></SevenDaysIncome>}></Route>
+                    <Route path="/income/from/last/seven/days" element={<SevenDaysIncome></SevenDaysIncome>}></Route>
 
 
                     <Route path="/doctor/add" element={<DoctorAdd></DoctorAdd>}></Route>

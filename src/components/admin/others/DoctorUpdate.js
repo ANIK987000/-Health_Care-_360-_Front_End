@@ -44,6 +44,19 @@ const DoctorUpdate=()=>{
     const[d_appoint,setAppointmentFee] = useState("");
     const[msg,setMsg]=useState("");
 
+
+
+
+    const[errN,setNameErr] = useState("");
+    const[errM,setMailErr] = useState("");
+    const[errP,setPassErr] = useState("");
+    const[errPH,setPhnErr] = useState("");
+    const[errADD,setAddErr] = useState("");
+    const[errQual,setQualErr] = useState("");
+    const[errVisit,setVisitErr] = useState("");
+    const[errAppoint,setAppointErr] = useState("");
+
+
    //________________________________________________________________________________________________
 
     const[err,setErr] = useState("");
@@ -88,7 +101,19 @@ const DoctorUpdate=()=>{
                         setErr(rsp.data.errors)
                         thisClicked.innerText = "Update";
                     }
-                })
+                },(err)=>{
+                if(err.response.status==400)
+                    {
+                        setAddErr(err.response.data.ModelState["doctor.Address"][0]);
+                        setNameErr(err.response.data.ModelState["doctor.Name"][0]);
+                        setMailErr(err.response.data.ModelState["doctor.Email"][0]);
+                        setPassErr(err.response.data.ModelState["doctor.Password"][0]);
+                        setPhnErr(err.response.data.ModelState["doctor.Phone"][0]);
+                        setQualErr(err.response.data.ModelState["doctor.Qualification"][0]);
+                        setVisitErr(err.response.data.ModelState["doctor.VisitingHours"][0]);
+                        setAppointErr(err.response.data.ModelState["doctor.AppointmentFee"][0]);
+                    }
+            })
                 
             } else {
                 swal("Doctor is not Updated");
@@ -118,23 +143,23 @@ const DoctorUpdate=()=>{
                            <input  name="d_id" id="d_id" value={d_id} onChange={(e)=>{setID(e.target.value)}} disabled/><br/>
                            <label> NAME</label><br/>
                            <input type="text" name="d_name" id="d_name" value={d_name} onChange={(e)=>{setName(e.target.value)}} />
-                           <span>{err.d_name? err.d_name[0]:''}</span><br/>  
+                           <span class="text-danger">{errN}</span><br/> 
 
                            <label>EMAIL</label><br/>
                            <input type="text" name="d_mail" id="d_mail" value={d_mail }  onChange={(e)=>{setMail(e.target.value)}} />
-                           <span>{err.d_mail? err.d_mail[0]:''}</span><br/>   
+                           <span class="text-danger">{errM}</span><br/>  
 
                            <label>PASSWORD</label><br/>
                            <input type="text" name="d_pass" id="d_pass" value={d_pass } onChange={(e)=>{setPassword(e.target.value)}} />
-                           <span>{err.d_pass? err.d_pass[0]:''}</span><br/>  
+                           <span class="text-danger">{errP}</span><br/>
 
                            <label>PHONE NUMBER</label><br/>
                            <input type="text" name="d_phn" id="d_phn" value={d_phn } onChange={(e)=>{setPhone(e.target.value)}} />
-                           <span>{err.d_phn? err.d_phn[0]:''}</span><br/>    
+                           <span class="text-danger">{errPH}</span><br/>
 
                            <label>ADDRESS</label><br/>
                            <input type="text" name="d_add" id="d_add" value={d_add } onChange={(e)=>{setAddress(e.target.value)}} />
-                           <span>{err.d_add? err.d_add[0]:''}</span><br/>  
+                           <span class="text-danger">{errADD}</span><br/> 
 
                            <label>Qualification</label><br/>
                            {/* <input type="text" name="d_qual" id="d_qual" value={d_qual } onChange={(e)=>{setQualification(e.target.value)}} />
@@ -149,7 +174,8 @@ const DoctorUpdate=()=>{
                             <option value="Orthodontist">Orthodontist</option>
                             <option value="Anesthesiologist">Anesthesiologist</option>
                             <option value="Cardiology physician">Cardiology physician</option>
-                            </select><br></br>
+                            </select>
+                            <span class="text-danger">{errQual}</span><br/>
                            
                            <label>VisitingHours</label><br/>
                            {/* <input type="text" name="d_visit" id="d_visit" value={d_visit } onChange={(e)=>{setVisitingHours(e.target.value)}} />
@@ -162,11 +188,12 @@ const DoctorUpdate=()=>{
                             <option value="8pm-10pm">8pm-10pm</option>
                             <option value="10pm-12pm">10pm-12pm</option>
                             <option value="emergency-period">Emgergency Period</option>
-                        </select><br></br>
+                        </select>
+                        <span class="text-danger">{errVisit}</span><br/>
                            
                            <label>AppointmentFee</label><br/>
                            <input type="text" name="d_appoint" id="d_appoint" value={d_appoint } onChange={(e)=>{setAppointmentFee(e.target.value)}} />
-                           <span>{err.d_appoint? err.d_appoint[0]:''}</span><br/>   
+                           <span class="text-danger">{errAppoint}</span><br/>   
 
                            <button type="button" class="btn btn-success" onClick={handleForm}>Edit</button>      
                            <Link to={"/doctor/list"}><button type="button" class="btnnn" style={{float:"right",marginRight:"150px"}}>Back</button></Link> 

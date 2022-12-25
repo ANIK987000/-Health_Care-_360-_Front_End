@@ -21,6 +21,12 @@ const NoticeAdd=()=>{
     const[err,setErr] = useState("");
 
 
+    const[errT,setTitleErr] = useState("");
+    const[errD,setDescriptionErr] = useState("");
+    const[errS,setStartDateErr] = useState("");
+    const[errE,setEndDateErr] = useState("");
+ 
+
     const handleForm=(event)=>{
         event.preventDefault();
         // setName('');
@@ -41,10 +47,46 @@ const NoticeAdd=()=>{
             }
             setErr(rsp.data);
             //debugger;
-        },(er)=>{
-            if(er.status==422)
+        },(err)=>{
+            if(err.response.status==400)
             {
-                setErr(err.response.data);
+                if(err.response.data.ModelState["noticeBoardDTO.Title"])
+                {
+                    setTitleErr(err.response.data.ModelState["noticeBoardDTO.Title"][0]);
+                }
+                else
+                {
+                    setTitleErr();
+                }
+                if(err.response.data.ModelState["noticeBoardDTO.Description"])
+                {
+                    setDescriptionErr(err.response.data.ModelState["noticeBoardDTO.Description"][0]);
+                }
+                else
+                {
+                    setDescriptionErr();
+                }
+                if(err.response.data.ModelState["noticeBoardDTO.StartDate"])
+                {
+                    setStartDateErr("*Start Date cannot be empty");
+                }
+                else
+                {
+                    setStartDateErr();
+                }
+                if(err.response.data.ModelState["noticeBoardDTO.EndDate"])
+                {
+                    setEndDateErr("*End Date cannot be empty");
+                }
+                else
+                {
+                    setEndDateErr();
+                }
+                
+             
+               
+              
+
             }
             else
             {
@@ -65,7 +107,7 @@ const NoticeAdd=()=>{
     return (
         <div>
                 <Sidebar></Sidebar>
-                {/* <Topbar></Topbar> */}
+                <Topbar></Topbar>
 
 
                 <div class="content">
@@ -79,21 +121,21 @@ const NoticeAdd=()=>{
                            
                           <label>Title</label><br />
                           <input type="text" name="title" id="title" value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
-                          <span class="ad-err">{err.title? err.title[0]:''}</span><br/>
+                          <span class="text-danger">{errT}</span><br/>
                           
                          
                           
                           <label>Description</label><br/>
                           <input type="text" name="description" id="description" value={description} onChange={(e)=>{setDescription(e.target.value)}} />
-                          <span class="ad-err">{err.description? err.description[0]:''}</span><br/>
+                          <span class="text-danger">{errD}</span><br/>
                           
                           <label>Start Date</label><br/>
                           <input type="date" name="startDate" id="startDate" value={startDate} onChange={(e)=>{setStartDate(e.target.value)}}/>
-                          <span class="ad-err">{err.startDate? err.startDate[0]:''}</span><br/>
+                          <span class="text-danger">{errS}</span><br/>
                           
                           <label>End Date</label><br/>
                           <input type="date" name="endDate" id="endDate" value={endDate} onChange={(e)=>{setEndDate(e.target.value)}} />
-                          <span class="ad-err">{err.endDate? err.endDate[0]:''}</span><br/>
+                          <span class="text-danger">{errE}</span><br/>
 
                          
                           

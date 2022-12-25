@@ -37,6 +37,12 @@ const AdminUpdate=()=>{
     const[pass,setPassword] = useState("");
     const[phn,setPhone] = useState("");
     const[add,setAddress] = useState("");
+
+    const[errN,setNameErr] = useState("");
+    const[errM,setMailErr] = useState("");
+    const[errP,setPassErr] = useState("");
+    const[errPH,setPhnErr] = useState("");
+    const[errADD,setAddErr] = useState("");
    
     const[msg,setMsg]=useState("");
 
@@ -70,9 +76,18 @@ const AdminUpdate=()=>{
                     if (rsp.status == 200) {
                         //navigate('/seller/dashboard');
                         swal('Success', "Admin updated successfully", 'success')
-                    } else if (rsp.status == 422) {
-                        setErr(rsp.data.errors)
+                    } else if (rsp.response.status == 400) {
+                     
                         thisClicked.innerText = "Update";
+                    }
+                },(err)=>{
+                    if(err.response.status==400)
+                    {
+                        setAddErr(err.response.data.ModelState["admin.Address"][0]);
+                        setNameErr(err.response.data.ModelState["admin.Name"][0]);
+                        setMailErr(err.response.data.ModelState["admin.Email"][0]);
+                        setPassErr(err.response.data.ModelState["admin.Password"][0]);
+                        setPhnErr(err.response.data.ModelState["admin.Phone"][0]);
                     }
                 })
                 
@@ -104,23 +119,23 @@ const AdminUpdate=()=>{
                            <input  name="id" id="id" value={id} onChange={(e)=>{setID(e.target.value)}} disabled/><br/>
                            <label> NAME</label><br/>
                            <input type="text" name="name" id="name" value={name} onChange={(e)=>{setName(e.target.value)}} />
-                           <span>{err.name? err.name[0]:''}</span><br/>  
+                           <span class="text-danger">{errN}</span><br/>
 
                            <label>EMAIL</label><br/>
                            <input type="text" name="mail" id="mail" value={mail }  onChange={(e)=>{setMail(e.target.value)}} />
-                           <span>{err.mail? err.mail[0]:''}</span><br/>   
+                           <span class="text-danger">{errM}</span><br/> 
 
                            <label>PASSWORD</label><br/>
                            <input type="text" name="pass" id="pass" value={pass } onChange={(e)=>{setPassword(e.target.value)}} />
-                           <span>{err.pass? err.pass[0]:''}</span><br/>  
+                           <span class="text-danger">{errP}</span><br/>
 
                            <label>PHONE NUMBER</label><br/>
                            <input type="text" name="phn" id="phn" value={phn } onChange={(e)=>{setPhone(e.target.value)}} />
-                           <span>{err.phn? err.phn[0]:''}</span><br/>    
+                           <span class="text-danger">{errPH}</span><br/>  
 
                            <label>ADDRESS</label><br/>
                            <input type="text" name="add" id="add" value={add } onChange={(e)=>{setAddress(e.target.value)}} />
-                           <span>{err.add? err.add[0]:''}</span><br/>  
+                           <span class="text-danger">{errADD}</span><br/>
 
                              
 
